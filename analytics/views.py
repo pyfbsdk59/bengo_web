@@ -83,11 +83,14 @@ def dashboard(request):
             print(traceback.format_exc()) # 印出完整錯誤到 Render Log
             messages.error(request, f"系統錯誤: {e}")
 
-    # --- 查詢邏輯 ---
+# --- 查詢邏輯 ---
     query_stock = request.GET.get('stock', '')
     chart_data = {}
     table_data = []
     stock_name_display = ""
+    
+    # [新增] 抓取資料庫內所有不重複的股票代號與名稱，供清單顯示
+    all_stocks = StockData.objects.values('stock_id', 'stock_name').distinct().order_by('stock_id')
     
     if query_stock:
         # 抓取該股票資料 (表格用，倒序)
@@ -118,5 +121,6 @@ def dashboard(request):
         'chart_data': json.dumps(chart_data),
         'table_data': table_data,
         'query_stock': query_stock,
-        'stock_name_display': stock_name_display
-    })
+        'stock_name_display': stock_name_display,
+        'all_stocks': all_stocks  # [新增] 將所有股票清單傳給前端
+    })s
