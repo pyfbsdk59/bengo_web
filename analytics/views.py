@@ -16,6 +16,14 @@ def dashboard(request):
             stock_name = data.get('stock_name')
             history = data.get('history', [])
 
+            # === [關鍵新增] 強制校正資料庫中的舊名稱 ===
+            if stock_id and stock_name:
+                StockData.objects.filter(stock_id=stock_id).update(stock_name=stock_name)
+            # ==========================================
+
+            print(f"DEBUG: 準備匯入 {stock_id} {stock_name}, 共 {len(history)} 筆原始資料")            stock_name = data.get('stock_name')
+            history = data.get('history', [])
+
             print(f"DEBUG: 準備匯入 {stock_id} {stock_name}, 共 {len(history)} 筆原始資料") # Render Log
 
             # 強壯的清洗函式
