@@ -21,11 +21,7 @@ def dashboard(request):
                 StockData.objects.filter(stock_id=stock_id).update(stock_name=stock_name)
             # ==========================================
 
-            print(f"DEBUG: 準備匯入 {stock_id} {stock_name}, 共 {len(history)} 筆原始資料")            stock_name = data.get('stock_name')
-            history = data.get('history', [])
-
-            print(f"DEBUG: 準備匯入 {stock_id} {stock_name}, 共 {len(history)} 筆原始資料") # Render Log
-
+            print(f"DEBUG: 準備匯入 {stock_id} {stock_name}, 共 {len(history)} 筆原始資料")
             # 強壯的清洗函式
             def clean_int(v):
                 if v is None or v == "": return 0
