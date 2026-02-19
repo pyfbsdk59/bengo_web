@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 import os
 import dj_database_url # 引入這個套件來讀取 Aiven 的 URL
 from pathlib import Path
-ALLOWED_HOSTS = ['*']
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -121,5 +121,5 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
-
+ALLOWED_HOSTS = ['bengo-web.onrender.com']
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
