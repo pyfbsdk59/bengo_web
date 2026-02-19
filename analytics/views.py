@@ -123,4 +123,4 @@ def dashboard(request):
         'query_stock': query_stock,
         'stock_name_display': stock_name_display,
         'all_stocks': all_stocks  # [新增] 將所有股票清單傳給前端
-    })s
+    })
